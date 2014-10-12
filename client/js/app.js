@@ -37,6 +37,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
   });
 
   force.init({
@@ -53,6 +54,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   });
 })
+
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
