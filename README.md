@@ -1,62 +1,4 @@
-# Heroku template mobile app `Quiz Live`
-
-This sample application implements a simple "live quiz" mobile game. The mobile
-app itself is a hybrid AngularJS app composed of HTML, CSS and Javascript. The
-server side is implemented as an Express Node.js application running on top of 
-a Postgres database.
-
-This application should serve as a good base for creating mobile apps to deploy on
-Heroku.
-
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-## How to play
-
-A set of players opens the app on their phones and registers to play. The app maintains 
-this list of users plus a set of quiz questions. During the game, questions
-are presented to each user running the app, and points are awarded for correct answers
-to questions. As players earn points a realtime leaderboard is displayed to each
-player.
-
-Notification of new questions and answer results are broadcast via Websocket to the
-mobile app using the SocketIO library.
-
-**Game screenshot**
-
-<img src="docs/game_shot.png" />
-
-
-**Admin screenshot**
-
-<img src="docs/admin_shot.png" />
-
-## Architecture
-
-The app has two major pieces: An AngularJS based client app which comprises the front-end
-which runs on the phone, and a Node.js backend which provides an API to the client app for 
-user registration, data storage, and event broadcast.
-
-    /---mobile app-----\
-    | Ionic framework  |
-    | Angular JS       |
-    \------------------/
-           |
-           | http / websocket
-           |
-    /-------Node.js app-\
-    |                   |
-    | express           |
-    |   bookshelf       |
-    |      node-pg      |
-    \-------------------/
-           |
-       [Postgres DB]
-
-# Deployment
-
-The app can be deployed to Heroku, and distributed to the mobile device either through
-the mobile web browser, or by compiling the AngularJS application into a native app
-using an Apach Cordova container.
+# repository-183
 
 # Installation and setup
 
@@ -123,13 +65,6 @@ are all drawn in the browser DOM.
 
 Angular
 
-## Accessing Force.com
-
-As an option, the app can be configured so that each person who registers to play is
-recorded as a Lead record in Salesforce. This template shows how to access the 
-Force.com API to exchange data with a Salesforce account. See [FORCE_README](docs/FORCE_README.md) 
-for full instructions. 
-
 # Debugging
 
 Install `node-debug` to use the Chrome debugger with Node.js:
@@ -180,7 +115,7 @@ And run in the emulator:
 
 # Contact
 
-Scott Persinger <scottp@heroku.com>
+Carlos Rojas <ing.carlosandresrojas@gmail.com>
 
 # License
 
