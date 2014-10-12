@@ -79,6 +79,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'StartCtrl'
   })
 
+   .state('step1', {
+    url: '/step1',
+        templateUrl: 'templates/step1.html',
+        controller: 'Step1Ctrl'
+  })
+
   .state('register', {
     url: "/register",
     templateUrl: "templates/register.html",
