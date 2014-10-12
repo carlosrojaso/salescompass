@@ -46,6 +46,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
+
+  openFB.init({appId: '719547304805756'});
+  
   $stateProvider.state('home', {
     url: "/home",
     templateUrl: "templates/home.html",
