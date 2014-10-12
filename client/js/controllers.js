@@ -20,15 +20,22 @@ angular.module('starter.controllers', ['forceng'])
   }
 
   $scope.forcelogin = function () {
-            force.login().then(
-                function () {
-                    console.log('Salesforce login succeeded');
+            // Get reference to Salesforce OAuth plugin
+            var oauthPlugin = cordova.require("com.salesforce.plugin.oauth");
+
+            // Authenticate
+            oauthPlugin.getAuthCredentials(
+                function (creds) {
+                    console.log(JSON.stringify(creds));
+                    // Initialize ForceJS
+                    force.init({accessToken: creds.accessToken, instanceURL: creds.instanceUrl, refreshToken: creds.refreshToken});
                     AuthenticationService.isAuthenticated = true;
-                    $location.path("/tab");   
+                    $location.path("/start");
                 },
-                function () {
-                    alert('Salesforce login failed');
-                });
+                function (error) {
+                    console.log(error);
+                }
+            );
         };
 
         $scope.discardToken = function () {
@@ -38,6 +45,8 @@ angular.module('starter.controllers', ['forceng'])
 
         $scope.isLoggedIn = function () {
             alert(force.isLoggedIn());
+            AuthenticationService.isAuthenticated = true;
+            $location.path("/start");
         };  
 
   $scope.timeleft = '0 secs';
@@ -221,9 +230,22 @@ angular.module('starter.controllers', ['forceng'])
 
 })
 
-.controller('StartCtrl', function($scope, $location) {
+.controller('ContentCtrl', function($scope, $location) {
+
+  $scope.items = [];
+  for (var i = 0; i < 50; i++) {
+    $scope.items.push('Item ' + i);
+  }
+
+  $scope.getItemHeight = function(item, index) {
+    //Make evenly indexed items be 10px taller, for the sake of example
+    return (index % 2) === 0 ? 50 : 60;
+  };
+
+
 
 })
+
 
 .controller('ContactCtrl', function ($scope, force) {
 
