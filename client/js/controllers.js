@@ -19,36 +19,6 @@ angular.module('starter.controllers', ['forceng'])
         {scope: 'email,publish_actions'});
   }
 
-  $scope.forcelogin = function () {
-            // Get reference to Salesforce OAuth plugin
-            var oauthPlugin = cordova.require("com.salesforce.plugin.oauth");
-
-            // Authenticate
-            oauthPlugin.getAuthCredentials(
-                function (creds) {
-                    console.log(JSON.stringify(creds));
-                    // Initialize ForceJS
-                    force.init({accessToken: creds.accessToken, instanceURL: creds.instanceUrl, refreshToken: creds.refreshToken});
-                    AuthenticationService.isAuthenticated = true;
-                    $location.path("/start");
-                },
-                function (error) {
-                    console.log(error);
-                }
-            );
-        };
-
-        $scope.discardToken = function () {
-            force.discardToken();
-            alert("Token discarded");
-        };
-
-        $scope.isLoggedIn = function () {
-            alert(force.isLoggedIn());
-            AuthenticationService.isAuthenticated = true;
-            $location.path("/start");
-        };  
-
   $scope.timeleft = '0 secs';
 })
 
@@ -197,7 +167,7 @@ angular.module('starter.controllers', ['forceng'])
   }
 })
 
-.controller('LoginCtrl', function($scope, $location, RegistrationService) {
+.controller('LoginCtrl', function($scope, $location, RegistrationService, AuthenticationService) {
   $scope.user = {
     email: '',
     password: ''
@@ -209,6 +179,11 @@ angular.module('starter.controllers', ['forceng'])
     RegistrationService.login($scope.user.email, $scope.user.password).then(function() {
       $location.path("/");
     });
+  }
+
+  $scope.login2 = function() {
+    AuthenticationService.isAuthenticated = true;
+    $location.path("/tab");
   }
 
 })
@@ -227,22 +202,31 @@ angular.module('starter.controllers', ['forceng'])
 })
 
 .controller('HomeCtrl', function($scope, $location) {
-
 })
 
-.controller('ContentCtrl', function($scope, $location) {
+.controller('ContentCtrl', function($scope, $location, force) {
 
-  $scope.items = [];
-  for (var i = 0; i < 50; i++) {
-    $scope.items.push('Item ' + i);
-  }
+        $scope.items = [];
+          for (var i = 0; i < 50; i++) {
+            $scope.items.push('Jhon ' + 'Milenkovic');
+            $scope.items.push('Pedro ' + 'Mann');
+            $scope.items.push('Margarita ' + 'Castagna');
+            $scope.items.push('Stefania ' + 'Rundlett');
+            $scope.items.push('Steven ' + 'Higonnet');
+            $scope.items.push('Charlie ' + 'Strominger');
+            $scope.items.push('Michelle ' + 'Jeffery');
+            $scope.items.push('Tynn ' + 'Caligor');
+            $scope.items.push('Lyan ' + 'Sailer');
+            $scope.items.push('Lee ' + 'Kubacki');
+            $scope.items.push('Tyfanni ' + 'Adam');
+            $scope.items.push('Gretta ' + 'Charrette');
+            $scope.items.push('Jean ' + 'Towne');
+          }
 
-  $scope.getItemHeight = function(item, index) {
-    //Make evenly indexed items be 10px taller, for the sake of example
-    return (index % 2) === 0 ? 50 : 60;
-  };
-
-
+          $scope.getItemHeight = function(item, index) {
+            //Make evenly indexed items be 10px taller, for the sake of example
+            return (index % 2) === 0 ? 50 : 60;
+          };
 
 })
 

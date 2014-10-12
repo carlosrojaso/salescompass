@@ -3,8 +3,9 @@
   Each tab's child <ion-nav-view> directive will have its own 
   navigation history that also transitions its views in and out.
 -->
-<ion-content ng-controller="ContentCtrl" title="Contacts">
-  <div class="list">
+<ion-view title="Contacts">
+<ion-content ng-controller="ContentCtrl">
+<div class="list">
     <div class="item my-item"
       collection-repeat="item in items"
       collection-item-width="'100%'"
@@ -13,4 +14,5 @@
       {{item}}
     </div>
   </div>
-</div>
+</ion-content>
+</ion-view>
