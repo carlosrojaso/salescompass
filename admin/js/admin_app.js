@@ -6,7 +6,7 @@ angular.module('admin', ['starter.services', 'ngResource'])
   });
 })
 
-.controller('AdminCtrl', function($http, $window, $scope, SocketIO, Question, Answer, Script) {
+.controller('AdminCtrl', function($http, $window, $scope, SocketIO, Question, Answer) {
 
 
   $scope.init = function() {
@@ -19,7 +19,6 @@ angular.module('admin', ['starter.services', 'ngResource'])
   };
 
   $scope.saveScript = function() {
-      console.log("HELLO");
       return $http({
           method: 'POST',
           data: $scope.script,
@@ -28,11 +27,7 @@ angular.module('admin', ['starter.services', 'ngResource'])
             $scope.scripts.push(data);
         });
       };
-      // new Script($scope.script).$save(function() {
-      //   $scope.scripts = Script.query();
-      //   console.log("script ", $scope.scripts);
-      // });
-      // }
+
 
 // function resetCreateForm() {
 //   $scope.scripts = {};

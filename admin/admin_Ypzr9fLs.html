@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <title>Admin</title>
     <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/admin.css">
+
 </head>
 
 <body ng-controller="AdminCtrl" ng-init="init()">
@@ -28,9 +30,10 @@
 
             <div class="col-md-4">
               <h3>Create</h3>
+              <p class="tips"> Include placeholders within double brackets, [[firstname]], and the question you want answered within tripple brackets, [[[What is your position in the company?]]].</p>
                 <form>
                   <div class="form-group">
-                    <input type="text" class="form-control" id="form-question" ng-model="script.text" placeholder="Enter script text...">
+                    <textarea type="text" class="form-control" id="form-question" ng-model="script.text" placeholder="Enter script text..."></textarea>
                   </div>
 
                   <label>Section</label>

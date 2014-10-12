@@ -30,9 +30,9 @@ module.exports = function(bookshelf) {
     tableName: 'answers'
   });
 
-  var Script = bookshelf.Model.extend({
-    tableName: 'scripts'
-  });
+  // var Script = bookshelf.Model.extend({
+  //   tableName: 'scripts'
+  // });
 
   // function save_script(req, res) {
   //   var script_id = req.params.scriptId;
@@ -112,4 +112,4 @@ module.exports = function(bookshelf) {
     leaders: leaders,
     clear_leaders: clear_leaders
   };
-}
+};
