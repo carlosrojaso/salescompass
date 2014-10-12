@@ -9,9 +9,15 @@
     border-color: #00a1df;
 }
 
+.button.button-stable{
+    background-color: #49B4C0;
+    border-color: #00a1df;
+    color:#ffffff;
+}
+
 /* home screen */
 .home-content {
-    background: url(/img/splash-background.png) no-repeat;
+    background: url(../img/splash-background.png) no-repeat;
     background-size: cover;
 }
 
@@ -49,7 +55,12 @@ color: #fff;
 
 /* home screen */
 .login-content {
-    background: url(/img/splash-background.png) no-repeat;
+    background: url(../img/splash-background.png) no-repeat;
+    background-size: cover;
+}
+
+.register-content {
+    background: url(../img/splash-background.png) no-repeat;
     background-size: cover;
 }
 
