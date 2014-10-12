@@ -19,30 +19,64 @@
         <div class="row">
             <div class="col-md-8">
 
-                <h4>Scripts</h4>
-                <div ng-repeat="script in scripts">
-                  <p>{{script.text}}</p>
-                  <p>{{script.section}}</p>
-                  <!-- loop through all scripts  -->
-                </div>
-                <hr>
+              <h4>Pages</h4>
+              <div ng-repeat="page in pages">
+              <!-- loop through all pages  -->
+                <p>Page {{page.id}}</p>
+              </div>
+              <hr>
+
+              <h4>Scripts</h4>
+              <div ng-repeat="script in scripts">
+                <p>{{script.text}}</p>
+                <p>{{script.answer_id}}</p>
+                <!-- loop through all scripts  -->
+              </div>
+              <hr>
+
+              <h4>Answers</h4>
+              <div ng-repeat="answer in answers">
+                <p>{{answer.text}}</p>
+                <p>{{answer.page_id}}</p>
+                <!-- loop through all scripts  -->
+              </div>
+              <hr>
             </div>
 
             <div class="col-md-4">
               <h3>Create</h3>
+
+              <h4>Pages</h4>
+              <div class="btn btn-primary" ng-click="addPage()">New Page</div>
+
+              <h4>Scripts</h4>
               <p class="tips"> Include placeholders within double brackets, [[firstname]], and the question you want answered within tripple brackets, [[[What is your position in the company?]]].</p>
-                <form>
-                  <div class="form-group">
-                    <textarea type="text" class="form-control" id="form-question" ng-model="script.text" placeholder="Enter script text..."></textarea>
-                  </div>
+              <form>
+                <div class="form-group">
+                  <textarea type="text" class="form-control" id="form-script" ng-model="script.text" placeholder="Enter script text..."></textarea>
+                </div>
+                <div class="form-group">
+                  <p class="tips"> What answer leads to this script? </p>
+                  <select name="Select answer" ng-model="script.answer_id">
+                          <option ng-repeat="answer in answers" value="{{answer.id}}">Page {{answer.page_id}}: {{answer.text}}</option>
+                  </select>
+                </div>
+                <div class="btn btn-primary" ng-click="saveScript()">Add Script</div>
+              </form>
 
-                  <label>Section</label>
-
-                  <div class="form-group">
-                    <input type="text" class="form-control" ng-model="script.section" placeholder="select section">
-                  </div>
-                  <div class="btn btn-primary" ng-click="saveScript()">Add</div>
-                </form>
+              <h4>Answers</h4>
+              <form>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="form-answer" ng-model="answer.text" placeholder="Enter answer...">
+                </div>
+                <div class="form-group">
+                  <p class="tips"> On what page is this answer asked for? </p>
+                  <select name="Select Page" ng-model="answer.page_id">
+                          <option ng-repeat="page in pages" value="{{page.id}}">Page {{page.id}}</option>
+                  </select>
+                </div>
+                <div class="btn btn-primary" ng-click="addAnswer()">Add Answer</div>
+              </form>
             </div>
 
         </div>
