@@ -10,13 +10,14 @@
 <ion-view title="Contacts">
 <ion-content ng-controller="ContentCtrl">
 <div class="list">
+  <a href="#/step1">
     <div class="item my-item"
       collection-repeat="item in items"
       collection-item-width="'100%'"
-      collection-item-height="getItemHeight(item, $index)"
-      >
+      collection-item-height="getItemHeight(item, $index)">
       {{item}}
     </div>
+  </a>
 
   </div>
 </ion-content>

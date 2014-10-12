@@ -208,7 +208,7 @@ angular.module('starter.controllers', ['forceng'])
 
         $scope.items = [];
           for (var i = 0; i < 50; i++) {
-            $scope.items.push('Jhon ' + 'Milenkovic');
+            $scope.items.push('James ' + 'Milenkovic');
             $scope.items.push('Pedro ' + 'Mann');
             $scope.items.push('Margarita ' + 'Castagna');
             $scope.items.push('Stefania ' + 'Rundlett');

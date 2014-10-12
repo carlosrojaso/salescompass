@@ -152,3 +152,24 @@ a h2 {
   float: right;
   top: 20px;
 }
+
+.step-text{
+  margin-top: 50px;
+  padding: 20px;
+  font-family: "Helvetica";
+  font-weight: ligther;
+  line-height: 1.5em;
+  font-size: 2em;
+
+}
+
+.text-from-form {
+  border-bottom: 2px dotted #49B4C0;
+
+}
+
+.question {
+  font-weight:bold;
+  color:#49B4C0;
+
+}
