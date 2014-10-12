@@ -38,6 +38,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       StatusBar.styleDefault();
     }
 
+     // Get reference to Salesforce OAuth plugin
+            var oauthPlugin = cordova.require("com.salesforce.plugin.oauth");
+
+            // Authenticate
+            oauthPlugin.getAuthCredentials(
+                function (creds) {
+                    console.log(JSON.stringify(creds));
+                    // Initialize ForceJS
+                    force.init({accessToken: creds.accessToken, instanceURL: creds.instanceUrl, refreshToken: creds.refreshToken});
+                    $state.go('app.contactlist');
+                },
+                function (error) {
+                    console.log(error);
+                }
+            );
+
   });
 
   force.init({
