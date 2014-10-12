@@ -4,10 +4,12 @@
 <head>
     <meta charset="utf-8">
     <title>Admin</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/admin.css">
+
 </head>
 
-<body ng-controller="AdminCtrl">
+<body ng-controller="AdminCtrl" ng-init="init()">
     <div class="container">
 
         <div class="page-header">
@@ -18,7 +20,9 @@
             <div class="col-md-8">
 
                 <h4>Scripts</h4>
-                <div>
+                <div ng-repeat="script in scripts">
+                  <p>{{script.text}}</p>
+                  <p>{{script.section}}</p>
                   <!-- loop through all scripts  -->
                 </div>
                 <hr>
@@ -26,28 +30,18 @@
 
             <div class="col-md-4">
               <h3>Create</h3>
+              <p class="tips"> Include placeholders within double brackets, [[firstname]], and the question you want answered within tripple brackets, [[[What is your position in the company?]]].</p>
                 <form>
-                    <div class="form-group">
-                        <p class="alert alert-danger" ng-show="!questionErrors.question">
-                            <strong>Error!</strong> Please supply some text.
-                        </p>
-                        <input type="text" class="form-control" id="form-question" ng-model="question.question" placeholder="Enter script text...">
-                    </div>
+                  <div class="form-group">
+                    <textarea type="text" class="form-control" id="form-question" ng-model="script.text" placeholder="Enter script text..."></textarea>
+                  </div>
 
-                    <label>Section</label>
-                    <p class="alert alert-danger" ng-show="!questionErrors.answers">
-                        <strong>Error!</strong> Please supply your scripts section.
-                    </p>
+                  <label>Section</label>
 
-                    <div class="form-group" ng-repeat="item in questionAnswers">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                  <input type="radio" ng-model="question.answer_index" ng-value="$index">
-                </span>
-                            <input type="text" class="form-control" ng-model="questionAnswers[$index].text" placeholder="select section">
-                        </div>
-                    </div>
-                    <button class="btn btn-primary" ng-click="saveQuestion()">Add</button>
+                  <div class="form-group">
+                    <input type="text" class="form-control" ng-model="script.section" placeholder="select section">
+                  </div>
+                  <div class="btn btn-primary" ng-click="saveScript()">Add</div>
                 </form>
             </div>
 

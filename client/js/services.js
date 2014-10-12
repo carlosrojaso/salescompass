@@ -1,8 +1,9 @@
 angular.module('starter.services', [])
 
 .factory('SocketIO', function() {
-  return io()
+  return io();
 })
+
 
 .factory('Question', function($resource) {
   return $resource('/resource/questions/:questionId', null, {
@@ -30,6 +31,7 @@ angular.module('starter.services', [])
     }
   });
 })
+
 
 .factory('AuthenticationService', function() {
   var auth = {
