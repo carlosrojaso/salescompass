@@ -85,6 +85,30 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'Step1Ctrl'
   })
 
+ .state('step2', {
+    url: '/step2',
+        templateUrl: 'templates/step2.html',
+        controller: 'Step2Ctrl'
+  })
+
+  .state('step3', {
+    url: '/step3',
+        templateUrl: 'templates/step3.html',
+        controller: 'Step3Ctrl'
+  })
+
+ .state('step4', {
+    url: '/step4',
+        templateUrl: 'templates/step4.html',
+        controller: 'Step4Ctrl'
+  })
+
+ .state('step5', {
+    url: '/step5',
+        templateUrl: 'templates/step5.html',
+        controller: 'Step5Ctrl'
+  })
+
   .state('register', {
     url: "/register",
     templateUrl: "templates/register.html",
