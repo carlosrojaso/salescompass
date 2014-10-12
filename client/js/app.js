@@ -38,35 +38,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       StatusBar.styleDefault();
     }
 
-     // Get reference to Salesforce OAuth plugin
+    // Get reference to Salesforce OAuth plugin
             var oauthPlugin = cordova.require("com.salesforce.plugin.oauth");
 
             // Authenticate
             oauthPlugin.getAuthCredentials(
                 function (creds) {
-                    console.log(JSON.stringify(creds));
+                    console.log("Yolo " + JSON.stringify(creds));
                     // Initialize ForceJS
                     force.init({accessToken: creds.accessToken, instanceURL: creds.instanceUrl, refreshToken: creds.refreshToken});
-                    $state.go('app.contactlist');
+                    //$state.go('app.contactlist');
                 },
                 function (error) {
                     console.log(error);
                 }
             );
-
-  });
-
-  force.init({
-            // Required: clientId of Salesforce Connected App
-            appId: '3MVG9Y6d_Btp4xp6SaghY5KqaN39I3LRMFpPQxLyz4kKI7rBYaGwzT.UhcgasAZJXkiHQc48emUZ3ZOdV8eFc',
-            // optional: defaults to 'v30.0'
-            apiVersion: 'v30.0',
-            // optional: defaults to oauthcallback.html in same directory as index.html
-            // oauthRedirectURL: 'http://localhost:3000/forceng/oauthcallback.html',
-            // only required when hosting app on your own server to work around cross-domain issues (Not required when running locally on mobile device)
-            // proxyURL: 'http://proxysalesforce.herokuapp.com/' /* Node.js hosted proxy provided as a sample for development only https://github.com/ccoenraets/cors-proxy */
-            // proxyURL: 'https://sfdc-cors.herokuapp.com' /* Play/Scala hosted proxy provided as a sample for development only https://github.com/jamesward/sf-cors-proxy */
-             proxyURL: 'http://localhost:3000' /* Your own local proxy for development */
 
   });
 })

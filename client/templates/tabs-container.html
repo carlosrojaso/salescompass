@@ -6,11 +6,18 @@
 
 <div class='profile-img'><img src="profile-pic-10.png"></div>
 
-<ion-content ng-controller="ContentCtrl" title="Contacts">
-  <div class="list">
-    <div class="item" ng-repeat="item in items" >
-      <a href="/{{item.id}}"><h2>{{item}}</h2></a>
+
+<ion-view title="Contacts">
+<ion-content ng-controller="ContentCtrl">
+<div class="list">
+    <div class="item my-item"
+      collection-repeat="item in items"
+      collection-item-width="'100%'"
+      collection-item-height="getItemHeight(item, $index)"
+      >
+      {{item}}
     </div>
 
   </div>
-</div>
+</ion-content>
+</ion-view>
