@@ -14,7 +14,7 @@ module.exports = function(bookshelf) {
     set_admin: function() {
       var self = this;
       return bookshelf.knex('users').count().then(function(result) {
-        if (result[0] && result[0].count == 0) {
+        if (result[0] && result[0].count === 0) {
           console.log("Marking first user " + self.get("email") + " as admin");
           self.set('is_admin', true);
         }
@@ -28,6 +28,10 @@ module.exports = function(bookshelf) {
 
   var Answer = bookshelf.Model.extend({
     tableName: 'answers'
+  });
+
+  var Section = bookshelf.Model.extend({
+    tableName: 'sections'
   });
 
   function activate_question(req, res, next) {

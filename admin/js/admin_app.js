@@ -6,9 +6,37 @@ angular.module('admin', ['starter.services', 'ngResource'])
   });
 })
 
-.controller('AdminCtrl', function($window, $scope, SocketIO, Question, Answer, SocketIO) {
+.controller('AdminCtrl', function($window, $scope, SocketIO, Question, Answer, Section, SocketIO) {
+
+
+  /********************* SCRIPTS START *****************************/
+
   // question creation
   resetCreateForm();
+
+  $scope.saveScript = function() {
+    $scope.questionErrors.question = validCreateQuestion();
+    $scope.questionErrors.answers = validCreateAnswers();
+
+    if ($scope.questionErrors.question && $scope.questionErrors.answers) {
+      var answers = [];
+      $scope.questionAnswers.forEach(function(answer, index) {
+        if (answer.text && answer.text.trim().length) {
+          answers.push(answer.text.trim());
+          if (index === $scope.question.answer_index) $scope.question.answer_index = answers.length - 1;
+        }
+      });
+      $scope.question.answers = JSON.stringify(answers);
+      new Question($scope.question).$save(function() {
+        $scope.questions = Question.query();
+      });
+      resetCreateForm();
+    }
+  };
+
+
+  /********************* SCRIPTS END *****************************/
+
 
   $scope.addAnswer = function() {
     $scope.questionAnswers.push({});
