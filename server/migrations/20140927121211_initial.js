@@ -38,7 +38,7 @@ exports.up = function(knex, Promise) {
         // console.log("Creating answers table");
         return schema.createTable('answers', function(table) {
           table.increments('id');
-          table.string('text');
+          table.text('text');
           table.integer('page_id').references('pages.id');
           table.timestamps();
         });
@@ -51,7 +51,7 @@ exports.up = function(knex, Promise) {
         // console.log("Creating scripts table");
         return schema.createTable('scripts', function(table) {
           table.increments('id');
-          table.string('text');
+          table.text('text');
           table.integer('answer_id').references('answers.id');
           table.integer('page_id').references('pages.id');
           table.timestamps();

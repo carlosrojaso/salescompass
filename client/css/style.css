@@ -95,14 +95,42 @@ background-color: transparent;
 }
 
 .button-icon, .icon, .ion-ios7-arrow-back, .button, .back-button{
-color: #fff;  
+color: #fff;
 }
 
 .bar-stable .button{
-color: #fff; 
+color: #fff;
 }
 
 .my-item {
   left: 0;
   right: 0;
-}   
+}
+
+.item{
+  height: 5em;
+  top:20px;
+  padding:0;
+  border-color: #49B4C0;
+  border-width: 1px;
+  border-style: solid;
+  font-size: 16px;
+
+}
+
+.item h2{
+
+  padding: 30px 0px 30px 70px;
+}
+
+a {
+  text-decoration: none;
+
+}
+
+a h2 {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}

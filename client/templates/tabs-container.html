@@ -1,16 +1,14 @@
-<!-- 
-  Create tabs with an icon and label, using the tabs-positive style. 
-  Each tab's child <ion-nav-view> directive will have its own 
+<!--
+  Create tabs with an icon and label, using the tabs-positive style.
+  Each tab's child <ion-nav-view> directive will have its own
   navigation history that also transitions its views in and out.
 -->
+
 <ion-content ng-controller="ContentCtrl" title="Contacts">
   <div class="list">
-    <div class="item my-item"
-      collection-repeat="item in items"
-      collection-item-width="'100%'"
-      collection-item-height="getItemHeight(item, $index)"
-      ng-style="{height: getItemHeight(item, $index)}">
-      {{item}}
+    <div class="item" ng-repeat="item in items" >
+      <a href="/{{item.id}}"><h2>{{item}}</h2></a>
     </div>
+
   </div>
 </div>
