@@ -1,6 +1,6 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['forceng'])
 
-.controller('AppCtrl', function($scope, $location, RegistrationService) {
+.controller('AppCtrl', function($scope, $location, RegistrationService, AuthenticationService, force) {
   $scope.logout = function() {
     RegistrationService.logout();
     $location.path("/register");
@@ -19,9 +19,29 @@ angular.module('starter.controllers', [])
         {scope: 'email,publish_actions'});
   }
 
+  $scope.forcelogin = function () {
+            force.login().then(
+                function () {
+                    console.log('Salesforce login succeeded');
+                    AuthenticationService.isAuthenticated = true;
+                    $location.path("/tab");   
+                },
+                function () {
+                    alert('Salesforce login failed');
+                });
+        };
+
+        $scope.discardToken = function () {
+            force.discardToken();
+            alert("Token discarded");
+        };
+
+        $scope.isLoggedIn = function () {
+            alert(force.isLoggedIn());
+        };  
+
   $scope.timeleft = '0 secs';
 })
-
 
 .controller('QuizCtrl', function($scope, $ionicPopup, $ionicLoading, SocketIO, Question, Answer, 
                                  AuthenticationService, RegistrationService, UserResponse) {
@@ -200,3 +220,65 @@ angular.module('starter.controllers', [])
 .controller('HomeCtrl', function($scope, $location) {
 
 })
+
+.controller('StartCtrl', function($scope, $location) {
+
+})
+
+.controller('ContactCtrl', function ($scope, force) {
+
+        $scope.newContact = function() {
+            $scope.contact = {FirstName:'', LastName:''};
+        };
+
+        $scope.query = function () {
+            force.query('select id, firstName, lastName from contact limit 50').then(
+                function (contacts) {
+                    $scope.contacts = contacts.records;
+                },
+                function() {
+                    alert("An error has occurred. See console for details.");
+                });
+        };
+
+        $scope.create = function () {
+            force.create('contact', $scope.contact).then(
+                function (response) {
+                    console.log(response);
+                },
+                function() {
+                    alert("An error has occurred. See console for details.");
+                });
+        };
+
+        $scope.update = function () {
+            force.update('contact', $scope.contact).then(
+                function (response) {
+                    console.log(response);
+                },
+                function() {
+                    alert("An error has occurred. See console for details.");
+                });
+        };
+
+        $scope.del = function () {
+            force.del('contact', $scope.contact.Id).then(
+                function (response) {
+                    console.log(response);
+                },
+                function() {
+                    alert("An error has occurred. See console for details.");
+                });
+        };
+
+        $scope.retrieve = function (id) {
+            force.retrieve('contact', id, 'id,firstName,lastName').then(
+                function (contact) {
+                    $scope.contact = contact;
+                },
+                function() {
+                    alert("An error has occurred. See console for details.");
+                });
+        };
+
+    })

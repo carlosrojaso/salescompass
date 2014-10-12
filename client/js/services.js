@@ -100,6 +100,11 @@ angular.module('starter.services', [])
       });;
     },
 
+    login2: function() {
+      AuthenticationService.isAuthenticated = true;
+      return true; 
+    },
+
     logout: function() {
       delete $window.localStorage.token;
     },

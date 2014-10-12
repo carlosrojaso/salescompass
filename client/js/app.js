@@ -3,9 +3,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngResource'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngResource', "forceng"])
 
-.run(function($window, $location, $ionicPlatform, $rootScope, AuthenticationService) {
+.run(function($window, $location, $ionicPlatform, $rootScope, AuthenticationService, force) {
   $rootScope.user = {
     name: $window.sessionStorage.name,
     is_admin: $window.sessionStorage.is_admin
@@ -38,6 +38,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       StatusBar.styleDefault();
     }
   });
+
+  force.init({
+            // Required: clientId of Salesforce Connected App
+            appId: '3MVG9Y6d_Btp4xp6SaghY5KqaN39I3LRMFpPQxLyz4kKI7rBYaGwzT.UhcgasAZJXkiHQc48emUZ3ZOdV8eFc',
+            // optional: defaults to 'v30.0'
+            apiVersion: 'v30.0',
+            // optional: defaults to oauthcallback.html in same directory as index.html
+            // oauthRedirectURL: 'http://localhost:3000/forceng/oauthcallback.html',
+            // only required when hosting app on your own server to work around cross-domain issues (Not required when running locally on mobile device)
+            // proxyURL: 'http://proxysalesforce.herokuapp.com/' /* Node.js hosted proxy provided as a sample for development only https://github.com/ccoenraets/cors-proxy */
+            // proxyURL: 'https://sfdc-cors.herokuapp.com' /* Play/Scala hosted proxy provided as a sample for development only https://github.com/jamesward/sf-cors-proxy */
+             proxyURL: 'http://localhost:3000' /* Your own local proxy for development */
+
+  });
 })
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -53,6 +67,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     url: "/home",
     templateUrl: "templates/home.html",
     controller: 'HomeCtrl'
+  })
+
+  .state('start', {
+    url: '/start',
+        templateUrl: 'templates/start.html',
+        controller: 'StartCtrl'
   })
 
   .state('register', {
