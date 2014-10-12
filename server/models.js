@@ -14,7 +14,7 @@ module.exports = function(bookshelf) {
     set_admin: function() {
       var self = this;
       return bookshelf.knex('users').count().then(function(result) {
-        if (result[0] && result[0].count == 0) {
+        if (result[0] && result[0].count === 0) {
           console.log("Marking first user " + self.get("email") + " as admin");
           self.set('is_admin', true);
         }
@@ -29,6 +29,24 @@ module.exports = function(bookshelf) {
   var Answer = bookshelf.Model.extend({
     tableName: 'answers'
   });
+
+  // var Script = bookshelf.Model.extend({
+  //   tableName: 'scripts'
+  // });
+
+  // function save_script(req, res) {
+  //   var script_id = req.params.scriptId;
+  //   console.log("saving script ", script_id);
+  //
+  //   return bookshelf.knex('scripts').update({
+  //     'show': knex.raw('(id=' + script_id + ')')
+  //   }).then(function() {
+  //     res.send('OK');
+  //   }).catch(function(err) {
+  //     console.log("Error ", err);
+  //     res.status(500).send(err);
+  //   });
+  // }
 
   function activate_question(req, res, next) {
     var question_id = req.params.questionId;
@@ -87,10 +105,11 @@ module.exports = function(bookshelf) {
   return {
     User: User,
     Question: Question,
+    Script: Script,
     Answer: Answer,
     activate_question: activate_question,
     next_question: next_question,
     leaders: leaders,
     clear_leaders: clear_leaders
-  }
-}
+  };
+};
