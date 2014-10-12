@@ -99,4 +99,4 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   // Register middleware to ensure our auth token is passed to the server
   $httpProvider.interceptors.push('TokenInterceptor');
 
-})
+});

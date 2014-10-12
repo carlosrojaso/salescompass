@@ -1,7 +1,16 @@
 angular.module('starter.services', [])
 
 .factory('SocketIO', function() {
-  return io()
+  return io();
+})
+
+.factory('Script', function($resource) {
+  return $resource('/resource/scripts/:scriptId', null, {
+    'save': {
+      method: 'POST',
+      url: '/resource/scipts/:scriptId/save'
+    }
+  });
 })
 
 .factory('Question', function($resource) {
@@ -30,6 +39,7 @@ angular.module('starter.services', [])
     }
   });
 })
+
 
 .factory('AuthenticationService', function() {
   var auth = {

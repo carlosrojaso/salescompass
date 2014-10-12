@@ -60,10 +60,14 @@ app.use('/login', auth.login);
 
 app.all('/resource/*', auth.authenticate);
 
+app.use('/resource', restful(models.Script, 'scripts'));
 app.use('/resource', restful(models.Question, 'questions'));
 app.use('/resource', restful(models.Answer, 'answers', {
   pre_save: save_answer
 }));
+
+app.post('/resource/scripts/save', auth.require_admin, models.save_script);
+
 app.post('/resource/questions/:questionId/activate', auth.require_admin, models.activate_question);
 app.post('/resource/questions/:questionId/next', auth.require_admin, models.next_question);
 app.get('/resource/leaders', models.leaders);

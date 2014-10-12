@@ -30,9 +30,23 @@ module.exports = function(bookshelf) {
     tableName: 'answers'
   });
 
-  var Section = bookshelf.Model.extend({
-    tableName: 'sections'
+  var Script = bookshelf.Model.extend({
+    tableName: 'scripts'
   });
+
+  // function save_script(req, res) {
+  //   var script_id = req.params.scriptId;
+  //   console.log("saving script ", script_id);
+  //
+  //   return bookshelf.knex('scripts').update({
+  //     'show': knex.raw('(id=' + script_id + ')')
+  //   }).then(function() {
+  //     res.send('OK');
+  //   }).catch(function(err) {
+  //     console.log("Error ", err);
+  //     res.status(500).send(err);
+  //   });
+  // }
 
   function activate_question(req, res, next) {
     var question_id = req.params.questionId;
@@ -91,10 +105,11 @@ module.exports = function(bookshelf) {
   return {
     User: User,
     Question: Question,
+    Script: Script,
     Answer: Answer,
     activate_question: activate_question,
     next_question: next_question,
     leaders: leaders,
     clear_leaders: clear_leaders
-  }
+  };
 }

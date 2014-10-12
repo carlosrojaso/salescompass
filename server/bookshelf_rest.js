@@ -8,7 +8,7 @@ module.exports = function(model, resource, options) {
     var select = '*';
     if (req.query.select) {
       select = req.query.select;
-      delete req.query['select'];
+      delete req.query.select;
     }
     model.query({
       select: select

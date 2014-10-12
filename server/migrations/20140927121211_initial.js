@@ -21,6 +21,20 @@ exports.up = function(knex, Promise) {
         return schema;
       }
     }),
+    schema.hasTable('scripts').then(function(exists) {
+      if (!exists) {
+        console.log("Creating scripts table");
+        return schema.createTable('scripts', function(table) {
+          table.increments('id');
+          table.string('text').notNullable().index();
+          table.string('section').notNullable();
+          table.timestamps();
+          console.log("done with scripts table");
+        });
+      } else {
+        return schema;
+      }
+    }),
     schema.hasTable('questions').then(function(exists) {
       if (!exists) {
         console.log("Creating questions table");
