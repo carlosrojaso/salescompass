@@ -23,15 +23,33 @@ module.exports = function(bookshelf) {
   });
 
   var Page = bookshelf.Model.extend({
-    tableName: 'pages'
+    tableName: 'pages',
+    scripts: function(){
+      return this.hasMany(Script);
+    },
+    answers: function(){
+      return this.hasMany(Answer);
+    }
   });
 
   var Answer = bookshelf.Model.extend({
-    tableName: 'answers'
+    tableName: 'answers',
+    page: function(){
+      return this.belongsTo(Page, 'page_id');
+    },
+    script: function(){
+      return this.hasOne(Script);
+    }
   });
 
   var Script = bookshelf.Model.extend({
-    tableName: 'scripts'
+    tableName: 'scripts',
+    page: function(){
+      return this.belongsTo(Page, 'page_id');
+    },
+    answer: function(){
+      return this.belongsTo(Answer, 'answer_id');
+    }
   });
 
   // function save_script(req, res) {

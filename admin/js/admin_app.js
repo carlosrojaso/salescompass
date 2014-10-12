@@ -10,7 +10,7 @@ angular.module('admin', ['starter.services', 'ngResource'])
 
   $scope.scripts = {};
   $scope.pages = {};
-  $scope.responses = {};
+  $scope.answers = {};
 
   $scope.init = function() {
     $http({

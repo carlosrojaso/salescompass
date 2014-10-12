@@ -53,6 +53,7 @@ exports.up = function(knex, Promise) {
           table.increments('id');
           table.string('text');
           table.integer('answer_id').references('answers.id');
+          table.integer('page_id').references('pages.id');
           table.timestamps();
           // console.log("done with scripts table");
         });
@@ -60,7 +61,28 @@ exports.up = function(knex, Promise) {
         return schema;
       }
     })
-  ]);
+  ]),
+  schema.hasTable('pages_scripts').then(function(exists) {
+    if (!exists) {
+      return schema.createTable('pages_scripts', function(table) {
+        table.integer('page_id').references('pages.id');
+        table.integer('script_id').references('scripts.id');
+      });
+    } else {
+      return schema;
+    }
+  }),
+  schema.hasTable('answers_pages').then(function(exists) {
+    if (!exists) {
+      // console.log("Creating answers table");
+      return schema.createTable('answers_pages', function(table) {
+        table.integer('page_id').references('pages.id');
+        table.integer('answer_id').references('answers.id');
+      });
+    } else {
+      return schema;
+    }
+  });
 };
 
 exports.down = function(knex, Promise) {
